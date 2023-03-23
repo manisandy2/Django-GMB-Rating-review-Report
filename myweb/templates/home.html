@@ -1,0 +1,83 @@
+{% extends  'base.html' %}
+{% load static %}
+
+{% block home_page %}
+
+<div class="container-fluid pt-4 ">
+  <div id="datefilter-container">
+    <div id="datefilter">
+      <form action="{% url 'store_view' %}" method="get">
+        <label for="start">Start date:</label>
+        <input type="date" id="start" name="start">
+        <label for="end">End date:</label>
+        <input type="date" id="end" name="end">
+        <!-- <button type="submit" name="date_filter">Submit</button> -->
+        <button type="submit" class="btn btn-primary">Click</button>
+        <!-- <input type="button" value="count" onclick="addvalue()"> -->
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="table_id" class="container-fluid">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Store Name</th>
+        <th>Rating</th>
+        <th>Reviews</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for first_result in results.first_results %}
+      <tr>
+        <td>{{ first_result.date }}</td>
+        <td>{{ first_result.store_id }}</td>
+        <td>{{ first_result.rating }}</td>
+        <td class="first_reviews">{{ first_result.review }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Store Name</th>
+        <th>Rating</th>
+        <th>Reviews</th>
+        <th>Diff</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for first_result in results.second_results %}
+      <tr>
+        <td>{{ first_result.date }}</td>
+        <td>{{ first_result.store_id }}</td>
+        <td>{{ first_result.rating }}</td>
+        <td class="second_reviews">{{ first_result.review }}</td>
+        <td class="third_review">{{ first_result.review }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+<style>
+.table{
+  float: left;
+  width: 50%;
+}
+td {
+  border: blue;
+}
+
+
+</style>
+
+
+
+{% endblock home_page %}

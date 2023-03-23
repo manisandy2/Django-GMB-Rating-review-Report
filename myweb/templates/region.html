@@ -1,0 +1,88 @@
+{% extends  'base.html' %}
+{% load static %}
+
+
+{% block region %}
+
+
+<div class="container-fluid pt-4 ">
+  <div id="datefilter-container">
+    <div id="datefilter">
+      <form action="" method="get">
+          {% csrf_token %}
+          {{ form.as_p }}
+        <label for="start">Start date:</label>
+        <input type="date" id="start" name="start" required>
+        <label for="end">End date:</label>
+        <input type="date" id="end" name="end" required>
+        <button type="submit" class="btn btn-primary">Click</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Region</th>
+                <th>Store Name</th>
+                <th>Start Date</th>
+                <th>Rating</th>
+                <th>Review</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for st in start_region %}
+            <tr>
+                <td>{{ st.region }}</td>
+                <td>{{ st.storename }}</td>
+                <td>{{ st.date }}</td>
+                <td>{{ st.rating }}</td>
+                <td class="first_reviews">{{ st.review }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Region</th>
+                <th>Store Name</th>
+                <th>End Date</th>
+                <th>Rating</th>
+                <th>Review</th>
+                <th>diff</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for st in end_region %}
+            <tr>
+                <td>{{ st.region }}</td>
+                <td>{{ st.storename }}</td>
+                <td>{{ st.date }}</td>
+                <td>{{ st.rating }}</td>
+                <td class="second_reviews">{{ st.review }}</td>
+                <td class="third_review">{{ st.review }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<style>
+.table{
+  float: left;
+  width: 50%;
+}
+td {
+  border: blue;
+}
+</style>
+
+
+
+{% endblock region %}

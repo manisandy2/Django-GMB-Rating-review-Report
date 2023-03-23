@@ -1,0 +1,6 @@
+.idea
+node_modules
+__pycache__
+migrations
+venv
+main.py
